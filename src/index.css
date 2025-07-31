@@ -1,0 +1,25 @@
+:root {
+  font-family: Inter, sans-serif;
+  font-feature-settings: "liga" 1, "calt" 1; /* fix for Chrome */
+  --bg-color: white;
+  --text-color: black;
+  letter-spacing: 2px
+}
+
+@supports (font-variation-settings: normal) {
+  :root {
+    font-family: InterVariable, sans-serif;
+  }
+}
+
+[data-theme="dark"] {
+  --bg-color: #1a1a1a;
+  --text-color: white;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  background-color: var(--bg-color);
+  color: var(--text-color);
+}
