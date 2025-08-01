@@ -32,10 +32,10 @@ function App() {
         <hr />
 
         <div className="toolbox">
-          <button>
+          <button title="Add">
             <Add className="add_btn" />
           </button>
-          <button onClick={isDarkHandler}>
+          <button onClick={isDarkHandler}  title="Change Mode">
             {isDark ? <Light className="mode" /> : <Night className="mode" />}
           </button>
         </div>

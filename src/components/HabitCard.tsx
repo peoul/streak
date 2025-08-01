@@ -1,5 +1,7 @@
 import "./HabitCard.css";
 import { type HabitCardProps } from "../types";
+import Trash from "../assets/trash.svg?react"
+import Done from "../assets/done.svg?react"
 
 const HabitCard = ({ habit, completions, onCommit }: HabitCardProps) => {
   return (
@@ -7,9 +9,13 @@ const HabitCard = ({ habit, completions, onCommit }: HabitCardProps) => {
       <div className="left-side">
         <h1>Title</h1>
         <p>Description</p>
-        <button>Commit</button>
-        <button>Trash</button>
+        <div className="toolkit-card">
+          <button title="Commit"><Done className="toolkit-icon"/></button>
+          <button title="Delete Habit :< "><Trash className="toolkit-icon"/></button>
+        </div>
+
       </div>
+
 
       <div className="right-side">
         <div className="contribution-grid">
