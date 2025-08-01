@@ -1,0 +1,38 @@
+.habit-card {
+  border: 1px solid var(--text-color);
+  padding: 25px;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.left-side{
+    margin: 10px;
+}
+
+.right-side {
+  display: flex;
+  flex-direction: column;
+  width: 80%;
+}
+
+.contribution-grid {
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+  gap: 4px;
+}
+
+.square {
+  width: 8px;
+  height: 8px;
+  border-radius: 2px;
+  background-color: var(--text-color);
+  opacity: 0.1;
+  flex-shrink: 0;
+}
+
+.square.completed {
+  opacity: 1;
+}

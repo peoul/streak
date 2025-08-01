@@ -1,7 +1,7 @@
 .header {
   display: flex;
   flex-direction: column;
-  align-items: start;
+  align-items: center;
   margin: 4rem;
 }
 
@@ -9,6 +9,10 @@
   font-weight: 200;
   font-size: 40px;
   margin: 0;
+}
+
+.title {
+  width: 70%;
 }
 
 .header p {
@@ -30,6 +34,7 @@ hr {
   flex-direction: row;
   justify-content: space-between;
   width: 70%;
+
 }
 
 .toolbox button {
@@ -43,7 +48,6 @@ hr {
   height: 30px;
 }
 
-
 .add_btn {
   width: 30px;
   height: 30px;
@@ -51,7 +55,12 @@ hr {
 }
 
 svg path {
-   
+  fill: none !important;
   stroke: var(--text-color) !important;
 }
 
+
+.habit-list {
+  width: 70%;
+  margin: 20px 0;
+}

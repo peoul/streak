@@ -5,6 +5,7 @@ import Night from "./assets/night.svg?react";
 import Add from "./assets/add.svg?react";
 
 import { db } from "./db";
+import HabitCard from "./components/HabitCard";
 
 function App() {
   const [isDark, setIsDark] = useState(true);
@@ -23,16 +24,24 @@ function App() {
   return (
     <>
       <div className="header">
-        <h1>Streak</h1>
-        <p>Commit Your Habits Like Your Code</p>
+        <div className="title">
+          <h1>Streak</h1>
+          <p>Commit Your Habits Like Your Code</p>
+        </div>
+
         <hr />
 
         <div className="toolbox">
-          <button><Add className="add_btn"/></button>
-          <button onClick={isDarkHandler}>
-            {isDark ? <Light className="mode" /> : <Night className="mode"/>}
+          <button>
+            <Add className="add_btn" />
           </button>
-          
+          <button onClick={isDarkHandler}>
+            {isDark ? <Light className="mode" /> : <Night className="mode" />}
+          </button>
+        </div>
+
+        <div className="habit-list">
+          <HabitCard />
         </div>
       </div>
     </>

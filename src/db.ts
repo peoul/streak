@@ -20,7 +20,7 @@ const db = new Dexie('StreakDatabase') as Dexie & {
 
 db.version(1).stores({
     habits: `++id, name, description, createdAt`,
-    completions: `++id, habitId, compledteDate`
+    completions: `++id, habitId, completedDate`
 })
 
 export type {Habit, Completion}
