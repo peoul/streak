@@ -3,7 +3,6 @@
   font-feature-settings: "liga" 1, "calt" 1; /* fix for Chrome */
   --bg-color: white;
   --text-color: black;
-
   letter-spacing: 2px
 }
 

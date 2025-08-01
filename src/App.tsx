@@ -1,10 +1,9 @@
 import { useEffect, useState } from "react";
 import "./App.css";
-import Light from "./assets/sun.svg?react";
-import Night from "./assets/night.svg?react";
 import Add from "./assets/add.svg?react";
+import Night from "./assets/night.svg?react";
+import Light from "./assets/sun.svg?react";
 
-import { db } from "./db";
 import HabitCard from "./components/HabitCard";
 import Modal from "./components/Modal";
 
@@ -29,8 +28,18 @@ function App() {
 
   return (
     <>
-      <Modal isOpen={isOpen} onClose={setIsOpenHandler}>
-        <h1>Hello</h1>
+      <Modal
+        isOpen={isOpen}
+        onClose={setIsOpenHandler}
+        title="Start A New Habit"
+      >
+        <div className="modal-input">
+          <p>Name: </p>
+          <input placeholder="Your Habit" /> {/* This goes in body */}
+          <p>Description:</p>
+          <textarea placeholder="Max.100 Character" />
+          <button>Save</button> {/* This goes in body */}
+        </div>
       </Modal>
       <div className="header">
         <div className="title">
