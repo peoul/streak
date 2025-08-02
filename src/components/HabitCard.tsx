@@ -4,11 +4,17 @@ import Trash from "../assets/trash.svg?react"
 import Done from "../assets/done.svg?react"
 
 const HabitCard = ({ habit, completions, onCommit }: HabitCardProps) => {
+
+  console.log(habit)
+  console.log(completions)
+
   return (
     <div className="habit-card">
       <div className="left-side">
         <h1>Title</h1>
         <p>Description</p>
+        <p>Start Date: {"10-10-2025"}</p>
+        
         <div className="toolkit-card">
           <button title="Commit"><Done className="toolkit-icon"/></button>
           <button title="Delete Habit :< "><Trash className="toolkit-icon"/></button>

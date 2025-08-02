@@ -5,6 +5,7 @@ interface Habit {
   name: string;
   description:string;
   createdAt: Date;
+  length: number;
 }
 
 interface Completion {

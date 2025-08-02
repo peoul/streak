@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, type KeyboardEvent } from "react";
 import "./App.css";
 import Add from "./assets/add.svg?react";
 import Night from "./assets/night.svg?react";
@@ -6,10 +6,15 @@ import Light from "./assets/sun.svg?react";
 
 import HabitCard from "./components/HabitCard";
 import Modal from "./components/Modal";
+import { getAllHabits, saveHabit } from "./utils/habitUtils";
 
 function App() {
   const [isDark, setIsDark] = useState(true);
   const [isOpen, setIsOpen] = useState(false);
+
+  const [name, setName] = useState("");
+  const [description, setDescription] = useState("");
+  const [length, setLength] = useState(1);
 
   const isDarkHandler = () => {
     setIsDark((prev) => !prev);
@@ -17,6 +22,46 @@ function App() {
 
   const setIsOpenHandler = () => {
     setIsOpen((prev) => !prev);
+  };
+
+  const onChangeHandler = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    setLength(parseInt(e.target.value));
+  };
+
+  const onChangeNameHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setName(e.target.value);
+  };
+
+  const onChangeDescriptionHandler = (
+    e: React.ChangeEvent<HTMLTextAreaElement>
+  ) => {
+    const desc = e.target.value;
+
+    if (desc.length <= 100) {
+
+      setDescription(desc);
+    }
+  };
+
+  const onSaveHandler = async (e: React.MouseEvent<HTMLButtonElement>) => {
+    e.preventDefault();
+
+    if (!name.trim() || !description.trim()) {
+      console.log("Please fill in all fields");
+      return;
+    }
+    try {
+      await saveHabit(name, description, length);
+
+      setName("");
+      setDescription("");
+      setLength(1);
+
+      setIsOpenHandler();
+
+    } catch (e) {
+      console.error("Failed to save:", e);
+    }
   };
 
   useEffect(() => {
@@ -35,10 +80,29 @@ function App() {
       >
         <div className="modal-input">
           <p>Name: </p>
-          <input placeholder="Your Habit" /> {/* This goes in body */}
+          <input
+            placeholder="Your Habit"
+            value={name}
+            onChange={onChangeNameHandler}
+          />
           <p>Description:</p>
-          <textarea placeholder="Max.100 Character" />
-          <button>Save</button> {/* This goes in body */}
+          <textarea
+            placeholder="Max.100 Character"
+            maxLength={100}
+            value={description}
+            onChange={onChangeDescriptionHandler}
+          />
+          <p>Length:</p>
+          <select value={length} onChange={onChangeHandler}>
+            <option value="1">1 Week</option>
+            <option value="2">2 Weeks</option>
+            <option value="4">4 Weeks</option>
+            <option value="8">8 Weeks</option>
+            <option value="12">12 Weeks</option>
+            <option value="26">26 Weeks (6 months)</option>
+            <option value="52">52 Weeks (1 year)</option>
+          </select>
+          <button onClick={onSaveHandler}>Save</button>
         </div>
       </Modal>
       <div className="header">
@@ -59,7 +123,7 @@ function App() {
         </div>
 
         <div className="habit-list">
-          <HabitCard />
+
         </div>
       </div>
     </>

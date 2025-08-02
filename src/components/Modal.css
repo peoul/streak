@@ -4,13 +4,12 @@
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: rgba(0, 0, 0, 0.9);  /* dark semi-transparent */
+  background-color: rgba(0, 0, 0, 0.9); /* dark semi-transparent */
   display: flex;
   justify-content: center;
   align-items: center;
-  z-index: 1000;  /* appear above everything */
+  z-index: 1000; /* appear above everything */
 }
-
 
 .modal-content {
   background-color: var(--bg-color);
@@ -19,7 +18,7 @@
   max-width: 500px;
   width: 90%;
   max-height: 80vh;
-  overflow-y: auto;  /* scroll if content is too tall */
+  overflow-y: auto; /* scroll if content is too tall */
 }
 
 .modal-content h1 {
@@ -34,14 +33,14 @@
   margin: 0;
 }
 
-.modal-content-header{
+.modal-content-header {
   display: flex;
-  flex-direction: row ;
+  flex-direction: row;
   justify-content: space-between;
   align-items: center;
 }
 
-.modal-content{
+.modal-content {
   display: flex;
   flex-direction: column;
 }
@@ -50,31 +49,42 @@
   width: 100%;
 }
 
-.modal-input{
+.modal-input {
   display: flex;
   flex-direction: column;
-  gap:15px
+  gap: 15px;
 }
 
-
-.modal-input input{
+.modal-input input {
   background: transparent;
   border: none;
   border: 1px solid var(--text-color);
   padding: 10px;
   width: 60%;
-  color: var(--text-color)
+  color: var(--text-color);
 }
 
-.modal-input textarea{
+.modal-input textarea {
   background-color: transparent;
   border: none;
   padding: 10px;
   border: 1px solid var(--text-color);
-  color: var(--text-color)
+  color: var(--text-color);
 }
 
-.modal-input button{
+.modal-input select {
+  background-color: transparent;
+  border: 1px solid var(--text-color);
+  padding: 10px;
+  color: var(--text-color);
+}
+
+.modal-input select option {
+  background-color: var(--bg-color);  /* match your theme */
+  color: var(--text-color);
+}
+
+.modal-input button {
   width: 10%;
   background-color: transparent;
   border: none;
@@ -85,10 +95,7 @@
   padding: 0px;
   letter-spacing: 2px;
   margin-top: 1rem;
-
 }
-
-
 
 .modal-close {
   background: none;
