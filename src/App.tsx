@@ -16,6 +16,8 @@ function App() {
   const [description, setDescription] = useState("");
   const [length, setLength] = useState(1);
 
+  const [habits, setHabits] = useState<Habit[]>([]);
+
   const isDarkHandler = () => {
     setIsDark((prev) => !prev);
   };
@@ -38,7 +40,6 @@ function App() {
     const desc = e.target.value;
 
     if (desc.length <= 100) {
-
       setDescription(desc);
     }
   };
@@ -59,6 +60,9 @@ function App() {
 
       setIsOpenHandler();
 
+      const updatedHabits = await getAllHabits(); //it's local database anyway.
+      setHabits(updatedHabits);
+
     } catch (e) {
       console.error("Failed to save:", e);
     }
@@ -70,6 +74,19 @@ function App() {
       isDark ? "dark" : "light"
     );
   }, [isDark]);
+
+  useEffect(() => {
+    const loadHabits = async () => {
+      try {
+        const habitsData = await getAllHabits();
+        setHabits(habitsData);
+      } catch (e) {
+        console.error("Failed to load habits:", e);
+      }
+    };
+
+    loadHabits();
+  }, []);
 
   return (
     <>
@@ -123,7 +140,14 @@ function App() {
         </div>
 
         <div className="habit-list">
-
+          {habits.map((habit) => (
+            <HabitCard
+              key={habit.id}
+              habit={habit}
+              completions={[]} // you'll need to get completions too
+              
+            />
+          ))}
         </div>
       </div>
     </>

@@ -9,6 +9,13 @@
   
 }
 
+.left-side{
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  width: 40%;
+}
+
 .toolkit-card {
   margin-top: 10px;
   display: flex;
@@ -36,7 +43,8 @@
 .right-side {
   display: flex;
   flex-direction: column;
-  margin-top: 12px;
+  margin-top: 0px;
+  width: 80%;
 
 }
 
@@ -62,8 +70,8 @@
 
 @media screen and (min-width: 1000px) {
   .right-side {
-    width: 70%;
-    margin-top: 0px;
+    width: 50%;
+    margin-top: 1rem;
   }
 
 }

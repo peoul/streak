@@ -11,9 +11,9 @@ const HabitCard = ({ habit, completions, onCommit }: HabitCardProps) => {
   return (
     <div className="habit-card">
       <div className="left-side">
-        <h1>Title</h1>
-        <p>Description</p>
-        <p>Start Date: {"10-10-2025"}</p>
+        <h1>{habit.name}</h1>
+        <p>{habit.description}</p>
+        <p>Start Date: {habit.createdAt.toLocaleDateString()}</p>
         
         <div className="toolkit-card">
           <button title="Commit"><Done className="toolkit-icon"/></button>
@@ -26,7 +26,7 @@ const HabitCard = ({ habit, completions, onCommit }: HabitCardProps) => {
       <div className="right-side">
         <div className="contribution-grid">
           {/* Generate 371 squares (53 weeks × 7 days) */}
-          {Array.from({ length: 371 }).map((_, index) => (
+          {Array.from({ length: habit.length * 7 }).map((_, index) => (
             <div key={index} className="square" />
           ))}
         </div>
