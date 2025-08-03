@@ -4,6 +4,7 @@ interface HabitCardProps {
   habit: Habit;
   completions: Completion[];  // filtered for this habit
   onCommit: (habitId: number) => void;
+  onDelete: (habitId: number) => void;
 }
 
 export type {HabitCardProps}

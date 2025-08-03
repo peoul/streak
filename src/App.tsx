@@ -6,7 +6,7 @@ import Light from "./assets/sun.svg?react";
 
 import HabitCard from "./components/HabitCard";
 import Modal from "./components/Modal";
-import { getAllHabits, saveHabit } from "./utils/habitUtils";
+import { deleteHabit, getAllHabits, saveHabit } from "./utils/habitUtils";
 
 function App() {
   const [isDark, setIsDark] = useState(true);
@@ -62,9 +62,18 @@ function App() {
 
       const updatedHabits = await getAllHabits(); //it's local database anyway.
       setHabits(updatedHabits);
-
     } catch (e) {
       console.error("Failed to save:", e);
+    }
+  };
+
+  const onDeleteHandler = async (habitId: number) => {
+    try {
+      await deleteHabit(habitId);
+      const updatedHabits = await getAllHabits(); //it's local database anyway.
+      setHabits(updatedHabits);
+    } catch (e) {
+      console.error(e);
     }
   };
 
@@ -145,7 +154,7 @@ function App() {
               key={habit.id}
               habit={habit}
               completions={[]} // you'll need to get completions too
-              
+              onDelete={onDeleteHandler}
             />
           ))}
         </div>

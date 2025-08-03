@@ -15,6 +15,12 @@ export const saveHabit = async (
   return habitId;
 };
 
+export const deleteHabit = async ( habitId: number) =>{
+  const HabitID = await db.habits.delete(habitId)
+
+  return HabitID
+}
+
 export const getAllHabits = async () => {
     const habits = await db.habits.toArray()
 
