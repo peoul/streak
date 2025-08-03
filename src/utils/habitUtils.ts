@@ -21,8 +21,18 @@ export const deleteHabit = async ( habitId: number) =>{
   return HabitID
 }
 
+export const addCompletions = async(habitId: number) => {
+  const CompletionID = await db.completions.add({
+    habitId: habitId,
+    completedDate: new Date()
+  })
+
+  return CompletionID
+}
+
 export const getAllHabits = async () => {
     const habits = await db.habits.toArray()
 
     return habits
 };
+

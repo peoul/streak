@@ -11,7 +11,7 @@ interface Habit {
 interface Completion {
     id: number;
     habitId: number;
-    completedDate : string;
+    completedDate : date;
 }
 
 const db = new Dexie('StreakDatabase') as Dexie & {
