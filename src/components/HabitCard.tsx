@@ -19,6 +19,16 @@ const HabitCard = ({
     });
   };
 
+const isPastDeadline = () => {
+  const today = new Date();
+  
+  const endDate = new Date(habit.createdAt);
+  endDate.setDate(habit.createdAt.getDate() + (habit.length * 7));
+  
+  return today > endDate;
+};
+
+
   return (
     <div className="habit-card">
       <div className="left-side">
@@ -27,9 +37,9 @@ const HabitCard = ({
         <p>Start Date: {habit.createdAt.toLocaleDateString()}</p>
 
         <div className="toolkit-card">
-          <button title="Commit">
+          {!isPastDeadline() && <button title="Commit">
             <Done className="toolkit-icon" onClick={() => onCommit(habit.id)} />
-          </button>
+          </button>}
           <button title="Delete Habit :< " onClick={() => onDelete(habit.id)}>
             <Trash className="toolkit-icon" />
           </button>
