@@ -1,4 +1,4 @@
-import { useEffect, useState, type KeyboardEvent } from "react";
+import { useEffect, useState } from "react";
 import "./App.css";
 import Add from "./assets/add.svg?react";
 import Night from "./assets/night.svg?react";
@@ -6,7 +6,14 @@ import Light from "./assets/sun.svg?react";
 
 import HabitCard from "./components/HabitCard";
 import Modal from "./components/Modal";
-import { deleteHabit, getAllHabits, saveHabit } from "./utils/habitUtils";
+import {
+  addCompletions,
+  deleteHabit,
+  getAllCompletetions,
+  getAllHabits,
+  saveHabit,
+} from "./utils/habitUtils";
+import { type Completion, type Habit } from "./db";
 
 function App() {
   const [isDark, setIsDark] = useState(true);
@@ -17,6 +24,7 @@ function App() {
   const [length, setLength] = useState(1);
 
   const [habits, setHabits] = useState<Habit[]>([]);
+  const [completions, setCompletions] = useState<Completion[]>([]);
 
   const isDarkHandler = () => {
     setIsDark((prev) => !prev);
@@ -77,6 +85,14 @@ function App() {
     }
   };
 
+  const onCommitHandler = async (habitID: number) => {
+    try {
+      await addCompletions(habitID);
+    } catch (e) {
+      console.error(e);
+    }
+  };
+
   useEffect(() => {
     document.documentElement.setAttribute(
       "data-theme",
@@ -85,16 +101,19 @@ function App() {
   }, [isDark]);
 
   useEffect(() => {
-    const loadHabits = async () => {
+    const loadData = async () => {
       try {
         const habitsData = await getAllHabits();
         setHabits(habitsData);
+
+        const completionsData = await getAllCompletetions();
+        setCompletions(completionsData);
       } catch (e) {
         console.error("Failed to load habits:", e);
       }
     };
 
-    loadHabits();
+    loadData();
   }, []);
 
   return (
@@ -153,8 +172,9 @@ function App() {
             <HabitCard
               key={habit.id}
               habit={habit}
-              completions={[]} // you'll need to get completions too
+              completions={completions.filter((item) => item.habitId === habit.id)} // you'll need to get completions too
               onDelete={onDeleteHandler}
+              onCommit={onCommitHandler}
             />
           ))}
         </div>

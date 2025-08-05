@@ -36,3 +36,9 @@ export const getAllHabits = async () => {
     return habits
 };
 
+export const getAllCompletetions = async () => {
+  const completions = await db.completions.toArray()
+
+  return completions
+}
+

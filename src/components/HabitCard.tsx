@@ -3,7 +3,6 @@ import { type HabitCardProps } from "../types";
 import Trash from "../assets/trash.svg?react";
 import Done from "../assets/done.svg?react";
 
-
 const HabitCard = ({
   habit,
   completions,
@@ -12,8 +11,6 @@ const HabitCard = ({
 }: HabitCardProps) => {
   console.log(habit);
   console.log(completions);
-
-
 
   return (
     <div className="habit-card">
@@ -24,9 +21,9 @@ const HabitCard = ({
 
         <div className="toolkit-card">
           <button title="Commit">
-            <Done className="toolkit-icon" />
+            <Done className="toolkit-icon" onClick={() => onCommit(habit.id)} />
           </button>
-          <button title="Delete Habit :< " value={habit.id} onClick={()=> onDelete(habit.id)}>
+          <button title="Delete Habit :< " onClick={() => onDelete(habit.id)}>
             <Trash className="toolkit-icon" />
           </button>
         </div>
