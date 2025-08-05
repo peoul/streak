@@ -22,13 +22,8 @@ Track your daily habits with the satisfying visual feedback of GitHub's contribu
 
 ### 📊 Visual Progress
 - GitHub-style green squares for each day
-- Darker green = completed, light gray = missed
+- Darker grey = completed, light gray = missed
 - See patterns and streaks at a glance
-
-### 📈 Streak Tracking
-- Current streak counter
-- Longest streak record
-- Completion percentage
 
 ## Basic Workflow
 
