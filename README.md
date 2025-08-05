@@ -2,7 +2,7 @@
 
 A GitHub-style contribution tracker for personal habits. Build consistency one commit at a time.
 
-![Steak Demo](public/animation.gif)
+![Steak Demo](public/Animation.gif)
 
 ## Overview
 
