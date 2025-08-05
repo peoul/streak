@@ -94,7 +94,7 @@ function App() {
   const onCommitHandler = async (habitID: number) => {
     try {
       const today = new Date();
-      result = await addCompletions(habitID, today);
+      await addCompletions(habitID, today);
 
       const updatedCommits = await getAllCompletetions()
       setCompletions(updatedCommits)
