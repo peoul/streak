@@ -1,6 +1,8 @@
-# Daily Habit Tracker 🟢
+# Streak - Comit Your Habit Like Your Code
 
 A GitHub-style contribution tracker for personal habits. Build consistency one commit at a time.
+
+![Steak Demo](public/animation.gif)
 
 ## Overview
 
