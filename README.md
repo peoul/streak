@@ -52,5 +52,3 @@ Start small, stay consistent, build momentum. One habit, one day, one commit at 
 
 ---
 
-**Current Status**: MVP Planning Phase
-**Next Step**: Build basic habit input and daily commit functionality
