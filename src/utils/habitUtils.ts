@@ -15,30 +15,47 @@ export const saveHabit = async (
   return habitId;
 };
 
-export const deleteHabit = async ( habitId: number) =>{
-  const HabitID = await db.habits.delete(habitId)
+export const deleteHabit = async (habitId: number) => {
+  const HabitID = await db.habits.delete(habitId);
 
-  return HabitID
-}
+  return HabitID;
+};
 
-export const addCompletions = async(habitId: number) => {
+export const addCompletions = async (habitId: number, date: Date) => {
+  const existingCompletion = await db.completions
+    .where("habitId")
+    .equals(habitId)
+    .and((completion) => {
+      const completionDate = new Date(completion.completedDate);
+      return completionDate.toDateString() === date.toDateString();
+    })
+    .first();
+
+  if (existingCompletion) {
+    console.log("Completion already exists for this date");
+    return null;
+  }
+
   const CompletionID = await db.completions.add({
     habitId: habitId,
-    completedDate: new Date()
-  })
+    completedDate: new Date(),
+  });
 
-  return CompletionID
-}
+  return CompletionID;
+};
+
+export const deleteAllCompletions = async (habitID: number) => {
+  await db.completions.where("habitId").equals(habitID).delete();
+};
 
 export const getAllHabits = async () => {
-    const habits = await db.habits.toArray()
+  const habits = await db.habits.toArray();
 
-    return habits
+  return habits;
 };
 
 export const getAllCompletetions = async () => {
-  const completions = await db.completions.toArray()
+  const completions = await db.completions.toArray();
 
-  return completions
-}
-
+  return completions;
+};

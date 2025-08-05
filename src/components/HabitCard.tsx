@@ -12,6 +12,13 @@ const HabitCard = ({
   console.log(habit);
   console.log(completions);
 
+  const checkCompletions = (date: Date) => {
+    return completions.find((item) => {
+      const completionDate = new Date(item.completedDate);
+      return completionDate.toDateString() === date.toDateString();
+    });
+  };
+
   return (
     <div className="habit-card">
       <div className="left-side">
@@ -32,9 +39,22 @@ const HabitCard = ({
       <div className="right-side">
         <div className="contribution-grid">
           {/* Generate 371 squares (53 weeks × 7 days) */}
-          {Array.from({ length: habit.length * 7 }).map((_, index) => (
-            <div key={index} className="square" />
-          ))}
+          {Array.from({ length: habit.length * 7 }).map((_, index) => {
+            const currentDate = new Date(habit.createdAt);
+            currentDate.setDate(habit.createdAt.getDate() + index);
+
+            const isCompleted = checkCompletions(currentDate);
+
+            return (
+              <div
+                key={index}
+                className={`square ${isCompleted ? "completed" : ""}`}
+                title={`${currentDate.toLocaleDateString()} ${
+                  isCompleted ? "✓ Completed" : "○ Not completed"
+                }`}
+              />
+            );
+          })}
         </div>
       </div>
     </div>

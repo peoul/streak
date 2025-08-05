@@ -8,6 +8,7 @@ import HabitCard from "./components/HabitCard";
 import Modal from "./components/Modal";
 import {
   addCompletions,
+  deleteAllCompletions,
   deleteHabit,
   getAllCompletetions,
   getAllHabits,
@@ -78,8 +79,13 @@ function App() {
   const onDeleteHandler = async (habitId: number) => {
     try {
       await deleteHabit(habitId);
+      await deleteAllCompletions(habitId)
       const updatedHabits = await getAllHabits(); //it's local database anyway.
       setHabits(updatedHabits);
+      
+      const updatedCommits = await getAllCompletetions()
+      setCompletions(updatedCommits)
+
     } catch (e) {
       console.error(e);
     }
@@ -87,7 +93,12 @@ function App() {
 
   const onCommitHandler = async (habitID: number) => {
     try {
-      await addCompletions(habitID);
+      const today = new Date();
+      result = await addCompletions(habitID, today);
+
+      const updatedCommits = await getAllCompletetions()
+      setCompletions(updatedCommits)
+
     } catch (e) {
       console.error(e);
     }
